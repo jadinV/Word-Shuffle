@@ -15,8 +15,20 @@ def letterShuffle(word):
     shuffled_word = "".join(characters)
     return shuffled_word
 
-def mixMidle ():
-    phrase = input("Enter a phrase: ")
+def mixMidle (phrase):
+    """
+    Shuffles the letters in the middle of every word in a phrase
+    leaving the first and last letters in place.
+
+    Args:
+        phrase (str): The input phrase to be scrambled.
+
+    Returns:
+        str: The shuffled phrase.
+    """
+    if (phrase == ""):
+        phrase = input("Enter a phrase: ")
+    
     print(phrase)
     newWords = []
 
@@ -27,7 +39,17 @@ def mixMidle ():
             first = i[0]
             last = i[len(i) - 1]
 
-            newWord = i[1:-1]
+            j = 1
+            k = -1
+            if (not first.isalpha()):
+                first = first + i[1]
+                j = 2
+
+            if (not last.isalpha()):
+                last = i[len(i) - 2] + last
+                k = -2
+
+            newWord = i[j:k]
             print(newWord)
 
             newWord = letterShuffle(newWord)
@@ -43,4 +65,4 @@ def mixMidle ():
     print(phrase)
     return phrase
 
-mixMidle()
+mixMidle("")
